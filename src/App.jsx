@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <Layout />
-      <UserCard />
+      {/* <UserCard /> */}
       <Events />
     </div>
   )

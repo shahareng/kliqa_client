@@ -1,5 +1,6 @@
 // src/pages/Admin/UsersCards/index.jsx
 import styles from "./style.module.css";
+import UserCard from "../../../components/userCardComp/UserCard";
 
 const img = "https://randomuser.me/api/portraits/men/32.jpg";
 
@@ -42,34 +43,21 @@ const users = [
   }
 ];
 
-function UserCard({ name, occupation, imageUrl, additionalInfo }) {
-  return (
-    <div className={styles.card}>
-      <img src={imageUrl} alt={name} className={styles.avatar} />
-      <h2 className={styles.name}>{name}</h2>
-      <p className={styles.occupation}>{occupation}</p>
-      <p className={styles.additionalInfo}>{additionalInfo}</p>
-    </div>
-  );
-}
-
-function mapAllUsers() {
-  return users.map((user, idx) => (
-    <UserCard
-      key={idx}
-      name={user.name}
-      occupation={user.occupation}
-      imageUrl={user.imageUrl}
-      additionalInfo={user.additionalInfo}
-    />
-  ));
-}
-
 function UsersCards() {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Professional Network</h1>
-      <div className={styles.grid}>{mapAllUsers()}</div>
+      <div className={styles.grid}>
+        {users.map((user, idx) => (
+          <UserCard
+            key={idx}
+            name={user.name}
+            occupation={user.occupation}
+            imageUrl={user.imageUrl}
+            additionalInfo={user.additionalInfo}
+          />
+        ))}
+      </div>
     </div>
   );
 }
