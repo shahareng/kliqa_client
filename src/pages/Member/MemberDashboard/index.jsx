@@ -1,12 +1,16 @@
-import { Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import style from "./style.module.css"
 
 function MemberDashboard() {
 
-  return (<>
-    <h1>hi from MemberDashboard</h1>
+  return (<div className={style.page}>
+    <nav className={style.nav}>
+      <Link to="profile">My Profile</Link>
+      <Link to="myEvents">My Events</Link>
+      <Link to="myConnections">My Connections</Link>
+    </nav>
     <Outlet />
-  </>
+  </div>
   )
 }
 
