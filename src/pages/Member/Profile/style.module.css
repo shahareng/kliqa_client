@@ -1,0 +1,39 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 18px;
+    background-color: #f3f2ef;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #0a66c2;
+    width: 100%;
+    padding: 1rem;
+}
+
+.edit_details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input, textarea, button {
+    width: auto;
+    background-color: inherit;
+    padding: 5px;
+    border-radius: 5px;
+    color: inherit;
+    font-family: inherit;
+    border: 1px solid #0a66c2;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
