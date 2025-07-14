@@ -36,7 +36,7 @@ function Jobs() {
       <h1>Jobs</h1>
       <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
 
-      {user?.full_name ?
+      {user?.jobs_history ?
         isEditing ?
           <form onSubmit={() => setIsEditing(!isEditing)} className={style.edit_details}>
             <div>

@@ -3,8 +3,10 @@ import style from "./style.module.css"
 import EditBtn from "../../../components/EditBtn";
 import UserContext from "../../../context/userContext";
 
-import Select from "react-select";
 import SelectOptions from "../../../components/SelectOptions";
+import UserInfoField from "../../../components/UserInfoField";
+import { FiBell, FiBellOff, FiUsers } from "react-icons/fi";
+import SelectedItem from "../../../components/SelectedItem";
 
 const groupsOptions = [
   { label: "Junior Developers", value: "junior_developers" },
@@ -74,43 +76,36 @@ function Community() {
 
   return (
     <div className={style.profile}>
-      <h1>Community</h1>
       <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
 
-      {user?.full_name ?
+      {user?.groups ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.edit_details}>
-            <label>Groups</label>
+          <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
+            <strong>Groups</strong>
             <SelectOptions name={"groups"} options={groupsOptions} handleSelect={handleSelect} selected={selectedGroups} />
-            <label>
-              <strong>Value from the community</strong>
-              <textarea name="community_value" value={user.community_value} onChange={handleChange} />
-            </label>
+            <UserInfoField title={"Value from the community"} data={user.community_value} icon={<FiUsers />} isEditing={isEditing} name={"community_value"} handleChange={handleChange} type={"textArea"} />
             <div>
-              <label>Community Contribution</label>
+              <strong>Community Contribution</strong>
               <SelectOptions name={"contributions"} options={contributionsOptions} handleSelect={handleSelect} selected={selectedContributions} />
             </div>
-            <label>
-              <strong>Wants updates</strong>
-              <input type="checkbox" name="wants_updates" checked={user.wants_updates} onChange={handleChange} />
-            </label>
+            <UserInfoField title={"Wants updates"} data={user.wants_updates} isEditing={isEditing} name={"wants_updates"} handleChange={handleChange} type={"checkbox"} />
           </form>
           :
           <div className={style.details}>
-            <div>
-              <h4>Groups</h4>
-              {user.groups.map((g, i) => <div className={style.group} key={i}>
-                <p>{g.name}</p>
+            <strong>Groups</strong>
+            <div className={style.groups}>
+              {user.groups.map((g, i) => <div key={i}>
+                <SelectedItem data={g.name} />
               </div>)}
             </div>
-            <p><strong>Value from the community:</strong> {user.community_value}</p>
-            <div>
-              <h4>Community Contribution</h4>
-              {user.contributions.map((c, i) => <div className={style.con} key={i}>
-                <p>{c.type}</p>
+            <UserInfoField title={"Value from the community"} data={user.community_value} icon={<FiUsers />} />
+            <strong>Community Contribution</strong>
+            <div className={style.groups}>
+              {user.contributions.map((c, i) => <div key={i}>
+                <SelectedItem data={c.type} />
               </div>)}
             </div>
-            <p><strong>Wants updates:</strong> {user.wants_updates == true ? "yes" : "no"}</p>
+            <UserInfoField title={"Wants updates"} icon={user.wants_updates ? <FiBell /> : <FiBellOff />} />
           </div>
         : "loading..."}
     </div>

@@ -1,0 +1,10 @@
+.item {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    background-color: var(--background-2);
+    border-radius: 10px;
+    max-width: fit-content;
+    padding: 5px;
+    font-size: 12px;
+}
