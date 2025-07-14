@@ -3,14 +3,26 @@
     flex-direction: column;
 }
 
-.nav {
+nav {
     display: flex;
     gap: 1rem;
-    width: 80px;
+    height: 60px;
+    width: 100%;
     padding: 1rem;
     list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--background-2);
 }
 
-a {
+nav a {
     text-decoration: none;
+    color: inherit;
+    padding: 10px;
+}
+
+.active {
+    border: 2px solid var(--background-2);
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px var(--background-2);
 }

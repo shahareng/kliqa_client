@@ -21,7 +21,7 @@ function General() {
 
       {user?.full_name ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.edit_details}>
+          <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
             <label>
               <strong>Full Name</strong>
               <input name="full_name" value={user.full_name} onChange={handleChange} />
@@ -57,8 +57,10 @@ function General() {
             <p><strong>Phone:</strong> {user.phone}</p>
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>City:</strong> {user.city}</p>
-            <a href={user.linkedin_url}>Linkedin Profile</a>
-            <a href={user.facebook_url}>Facebook Profile</a>
+            <p><strong>Linkedin Profile:</strong> {user.linkedin_url}</p>
+            <p><strong>Facebook Profile:</strong> {user.facebook_url}</p>
+            {/* <a href={user.linkedin_url}>Linkedin Profile</a>
+            <a href={user.facebook_url}>Facebook Profile</a> */}
             <p><strong>Aditional Info:</strong> {user.additional_info}</p>
           </div>
         : "loading..."}
