@@ -5,15 +5,11 @@ function Profile() {
 
   const user = {
     "id": "c793a2e1-4b5f-4d23-9f18-0b8c1e7f2a1b",
-    "full_name": "David Levi",
+    "full_name": "דוד לוי",
     "english_name": "David Levi",
     "phone": "+1-202-555-0123",
     "email": "david.levi@example.com",
     "city": "Tel Aviv",
-    "events": [
-      { "event_id": 101, "status": "attending" },
-      { "event_id": 102, "status": "interested" }
-    ],
     "jobs_history": [
       { "job_id": 201, "company": "ACME Ltd", "from": "2018-01", "to": "2020-12" },
       { "job_id": 202, "company": "TechX", "from": "2021-01", "to": null }
@@ -60,7 +56,7 @@ function Profile() {
     <div className={style.profile}>
       <h1>My Profile</h1>
       <img src="" alt="profile_img" />
-      {isEditing ? '' : <button onClick={handleEdit}>✏️ Edit</button>}
+      <button onClick={handleEdit}>{isEditing ? 'save' : "✏️"}</button> 
       
 
       {isEditing ?
@@ -129,37 +125,35 @@ function Profile() {
         </form>
         :
         <div className={style.details}>
-          <p><strong>Full Name:</strong> {user.full_name}</p>
-          <p><strong>Phone:</strong> {user.phone}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>City:</strong> {user.city}</p>
-          <a href={user.linkedin_url}>Linkedin Profile</a>
-          <a href={user.facebook_url}>Facebook Profile</a>
-          <p><strong>Aditional Info:</strong> {user.additional_info}</p>
+          <p><strong>Full Name:</strong> {inputs.full_name}</p>
+          <p><strong>Phone:</strong> {inputs.phone}</p>
+          <p><strong>Email:</strong> {inputs.email}</p>
+          <p><strong>City:</strong> {inputs.city}</p>
+          <a href={inputs.linkedin_url}>Linkedin Profile</a>
+          <a href={inputs.facebook_url}>Facebook Profile</a>
+          <p><strong>Aditional Info:</strong> {inputs.additional_info}</p>
           <div>
             <h4>Jobs</h4>
-            {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
+            {inputs.jobs_history.map((job, i) => <div className={style.job} key={i}>
               <p>{job.company}&emsp;&emsp; {job.from} - {job.to == null ? "today" : job.to}</p>
             </div>)}
           </div>
           <div>
             <h4>Groups</h4>
-            {user.groups.map((g, i) => <div className={style.group} key={i}>
+            {inputs.groups.map((g, i) => <div className={style.group} key={i}>
               <p>{g.name}</p>
             </div>)}
           </div>
-          <p><strong>Value from the community:</strong> {user.community_value}</p>
+          <p><strong>Value from the community:</strong> {inputs.community_value}</p>
           <div>
             <h4>Community Contribution</h4>
-            {user.contributions.map((c, i) => <div className={style.con} key={i}>
+            {inputs.contributions.map((c, i) => <div className={style.con} key={i}>
               <p>{c.type}</p>
             </div>)}
           </div>
-          <p><strong>Wants updates:</strong> {user.wants_updates == true ? "yes" : "no"}</p>
+          <p><strong>Wants updates:</strong> {inputs.wants_updates == true ? "yes" : "no"}</p>
         </div>
       }
-
-      {isEditing ? <button onClick={handleSubmit}>save</button> : ''}
 
 
     </div>

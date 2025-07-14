@@ -1,12 +1,12 @@
 .page {
     display: flex;
+    flex-direction: column;
 }
 
 .nav {
     display: flex;
-    flex-direction: column;
     gap: 1rem;
-    width: 200px;
+    width: 80px;
     padding: 1rem;
     list-style: none;
 }

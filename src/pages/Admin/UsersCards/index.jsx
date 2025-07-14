@@ -1,6 +1,6 @@
 // src/pages/Admin/UsersCards/index.jsx
 import styles from "./style.module.css";
-import UserCard from "../../../components/userCardComp/UserCard";
+// import UserCard from "../../../components/userCardComp/UserCard";
 
 const img = "https://randomuser.me/api/portraits/men/32.jpg";
 
@@ -48,14 +48,14 @@ function UsersCards() {
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Professional Network</h1>
       <div className={styles.grid}>
-        {users.map((user, idx) => (
-          <UserCard
-            key={idx}
-            name={user.name}
-            occupation={user.occupation}
-            imageUrl={user.imageUrl}
-            additionalInfo={user.additionalInfo}
-          />
+        {users.map((user, idx) => ( <div>{user.name}</div>
+          // <UserCard
+          //   key={idx}
+          //   name={user.name}
+          //   occupation={user.occupation}
+          //   imageUrl={user.imageUrl}
+          //   additionalInfo={user.additionalInfo}
+          // />
         ))}
       </div>
     </div>
