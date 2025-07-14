@@ -1,16 +1,8 @@
-import Layout from "./Layout"
-import UserCard from "./pages/Admin/UsersCards/index.jsx";
-import Events from "./pages/Admin/Events/index.jsx";
 import React from "react";
-function App() {
+import Layout from "./Layout";
 
-  return (
-    <div>
-      <Layout />
-      {/* <UserCard /> */}
-      <Events />
-    </div>
-  )
+function App() {
+  return <Layout />;
 }
 
-export default App
+export default App;

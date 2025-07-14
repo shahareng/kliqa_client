@@ -1,31 +1,29 @@
 import React, { useRef, useState, useEffect } from 'react';
 import EventCards from '../../../components/eventComponents/EventsCards.jsx';
-import styles from './style.module.css';
+//import styles from './style.module.css';
 
 function Events() {
  const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(null);
 
-  // ⬅️ כאן שמי את זה
   const events = Array(10).fill({
     title: "אירוע לדוגמה",
     date: "2025-08-01",
     location: "מיקום כלשהו",
-    description: "תיאור ארוך של האירוע",
-    imageUrl: "https://via.placeholder.com/150"
+    description: "תיאור ארוך של האירוע שמכיל מידע נוסף על הפעילות והמשתתפים",
+    imageUrl: "https://via.placeholder.com/200x150"
   });
-    
 
   // תנועה אוטומטית
   useEffect(() => {
     const scrollContainer = scrollRef.current;
-
+    
     const interval = setInterval(() => {
       if (!isPaused && scrollContainer) {
         scrollContainer.scrollLeft += 1;
       }
-    }, 15); // מהירות
+    }, 15);
 
     return () => clearInterval(interval);
   }, [isPaused]);
@@ -33,6 +31,8 @@ function Events() {
   // זיהוי כרטיס במרכז המסך
   const detectCenterCard = () => {
     const container = scrollRef.current;
+    if (!container) return;
+    
     const children = Array.from(container.children);
     let bestIndex = null;
     let minDiff = Infinity;
@@ -59,27 +59,32 @@ function Events() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.pageTitle}>אירועים קרובים</h1>
-      <div
-        className={styles.scrollContainer}
-        ref={scrollRef}
-        onScroll={detectCenterCard}
-      >
-        {events.map((event, index) => (
+    <div className="events-wrapper">
+      <NetworkBackground />
+      <div className="events-content">
+        <h1 className="page-title">אירועים קרובים</h1>
+        <div className="scroll-container-wrapper">
           <div
-            key={index}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            className="scroll-container"
+            ref={scrollRef}
+            onScroll={detectCenterCard}
           >
-            <EventCards
-              {...event}
-              isFocused={focusedIndex === index}
-            />
+            {events.map((event, index) => (
+              <div
+                key={index}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                <EventCards
+                  {...event}
+                  isFocused={focusedIndex === index}
+                />
+              </div>
+            ))}
+             </div> {/* scroll-container-wrapper */}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
   );
 }
 

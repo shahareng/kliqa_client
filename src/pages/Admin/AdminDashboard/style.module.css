@@ -1,0 +1,28 @@
+.adminDashboard{
+  text-align: center;
+  padding: 40px;
+  direction: rtl;
+  font-family: Arial, sans-serif;
+}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.adminButton {
+  padding: 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background-color: #1976d2;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.adminButton:hover {
+  background-color: #1565c0;
+}
