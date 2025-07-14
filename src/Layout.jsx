@@ -2,12 +2,10 @@ import { Route, Routes } from "react-router-dom"
 import Login from './pages/Login';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import UsersCards from "./pages/Admin/UsersCards"
-import Events from "./pages/Admin/Events"
 import Connections from "./pages/Admin/Connections"
 import MemberDashboard from './pages/Member/MemberDashboard';
 import Profile from "./pages/Member/Profile"
-import MyEvents from "./pages/Member/MyEvents"
-import MyConnections from "./pages/Member/MyConnections"
+import MyConnections from "./pages/member/MyConnections"
 
 function Layout() {
 
@@ -17,13 +15,11 @@ function Layout() {
 
             <Route path="/admin" element={<AdminDashboard />}>
                 <Route path="users" element={<UsersCards />} />
-                <Route path="events" element={<Events />} />
                 <Route path="connections" element={<Connections />} />
             </Route>
 
             <Route path="/members" element={<MemberDashboard />}>
                 <Route path="profile" element={<Profile />} />
-                <Route path="myEvents" element={<MyEvents />} />
                 <Route path="myConnections" element={<MyConnections />} />
             </Route>
         </Routes>
