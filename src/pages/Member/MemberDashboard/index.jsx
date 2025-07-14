@@ -4,6 +4,7 @@ import { useState } from "react";
 import UserContext from "../../../context/userContext";
 
 const userA = {
+  "img" : "https://randomuser.me/api/portraits/men/32.jpg",
   "id": "c793a2e1-4b5f-4d23-9f18-0b8c1e7f2a1b",
   "full_name": "דוד לוי",
   "english_name": "David Levi",
@@ -15,8 +16,8 @@ const userA = {
     { "job_id": 202, "company": "TechX", "from": "2021-01-01", "to": null }
   ],
   "groups": [
-    { "group_id": 301, "name": "Israel Developers" },
-    { "group_id": 302, "name": "UX Community" }
+    { "group_id": 301, "name": "junior_developers" },
+    { "group_id": 302, "name": "job_seekers" }
   ],
   "years_of_experience": 7,
   "linkedin_url": "https://www.linkedin.com/in/davidlevi",

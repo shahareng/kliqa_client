@@ -16,7 +16,7 @@ function General() {
 
   return (
     <div className={style.profile}>
-      <img src="" alt="profile_img" />
+      <img src={user.img} alt="profile_img" />
       <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
 
       {user?.full_name ?
