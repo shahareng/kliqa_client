@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom"
 import style from "./style.module.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserContext from "../../../context/userContext";
+import useApi from "../../../hooks/useApi";
 
 const userA = {
-  "img" : "https://randomuser.me/api/portraits/men/32.jpg",
+  "img": "https://randomuser.me/api/portraits/men/32.jpg",
   "id": "c793a2e1-4b5f-4d23-9f18-0b8c1e7f2a1b",
   "full_name": "דוד לוי",
   "english_name": "David Levi",
@@ -35,7 +36,18 @@ const userA = {
 
 function MemberDashboard() {
 
-  const [user, setUser] = useState(userA);
+  const [user, setUser] = useState(null);
+  const { data, loading, error, get } = useApi();
+
+  useEffect(() => {
+    get("users/1", { enableLogging: true })
+      .then(profile => setUser(profile))
+      .catch(err => console.error("Failed loading user profile", err));
+  }, []);
+
+  console.log(user);
+
+
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

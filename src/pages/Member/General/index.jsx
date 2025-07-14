@@ -2,11 +2,14 @@ import { useContext, useState } from "react";
 import style from "./style.module.css"
 import UserContext from "../../../context/userContext";
 import EditBtn from "../../../components/EditBtn";
+import useApi from "../../../hooks/useApi";
 
 function General() {
 
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
+
+  const { data, loading, error, put } = useApi();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -14,17 +17,35 @@ function General() {
     setUser(values => ({ ...values, [name]: value }))
   }
 
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const updated = await put("users/1", {
+        body: user,
+        enableLogging: true,
+      });
+      setIsEditing(!isEditing)
+    } catch (err) {
+      console.error("update error", err);
+    }
+  };
+
   return (
     <div className={style.profile}>
-      <img src={user.img} alt="profile_img" />
+      <img src={user.profile_picture} alt="profile_img" />
       <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
 
-      {user?.full_name ?
+      {user?.first_name ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
+          <form onSubmit={handleSave} className={style.details}>
+            {/* <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}> */}
             <label>
-              <strong>Full Name</strong>
-              <input name="full_name" value={user.full_name} onChange={handleChange} />
+              <strong>First Name</strong>
+              <input name="first_name" value={user.first_name} onChange={handleChange} />
+            </label>
+            <label>
+              <strong>Last Name</strong>
+              <input name="last_name" value={user.last_name} onChange={handleChange} />
             </label>
             <label>
               <strong>Phone</strong>
@@ -50,10 +71,12 @@ function General() {
               <strong>Aditional Info</strong>
               <textarea name="additional_info" value={user.additional_info} onChange={handleChange} />
             </label>
+            <button type="submit">save</button>
           </form>
           :
           <div className={style.details}>
-            <p><strong>Full Name:</strong> {user.full_name}</p>
+            <p><strong>First Name:</strong> {user.first_name}</p>
+            <p><strong>Last Name:</strong> {user.last_name}</p>
             <p><strong>Phone:</strong> {user.phone}</p>
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>City:</strong> {user.city}</p>
