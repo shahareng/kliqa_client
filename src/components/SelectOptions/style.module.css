@@ -1,4 +1,4 @@
-button {
+/* button {
     width: auto;
     background-color: inherit;
     padding: 5px;
@@ -6,4 +6,19 @@ button {
     color: inherit;
     font-family: inherit;
     border: 1px solid #0a66c2;
+} */
+
+.wrapper__control {
+  background-color: inherit;
+  
 }
+
+:global(.wrapper__multi-value) {
+  background-color: var(--background-2);
+  border-radius: 10px;
+}
+
+/* .myMultiValue {
+  background-color: var(--background-2);
+  border-radius: 10px;
+} */

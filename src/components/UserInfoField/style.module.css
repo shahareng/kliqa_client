@@ -1,0 +1,36 @@
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-bottom: 1px solid var(--purple);
+}
+
+strong {
+    color: var(--purple);
+    font-size: 12px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+i {
+    color: var(--purple);
+}
+
+input,
+textarea {
+    width: 90%;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    color: inherit;
+    border: none;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}

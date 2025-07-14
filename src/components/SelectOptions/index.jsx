@@ -5,6 +5,8 @@ function SelectOptions({ name, options, handleSelect, selected }) {
 
     return (
         <Select
+            className={style.wrapper}
+            classNamePrefix="wrapper"
             name={name}
             options={options}
             value={selected}
