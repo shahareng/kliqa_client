@@ -6,7 +6,6 @@ function MemberDashboard() {
   return (<div className={style.page}>
     <nav className={style.nav}>
       <Link to="profile">My Profile</Link>
-      <Link to="myEvents">My Events</Link>
       <Link to="myConnections">My Connections</Link>
     </nav>
     <Outlet />
