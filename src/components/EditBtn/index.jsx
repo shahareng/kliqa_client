@@ -7,7 +7,7 @@ function EditBtn({ isEditing, setIsEditing }) {
     }
 
     return (
-        <button onClick={handleEdit}>{isEditing ? 'save' : "✏️"}</button>
+        <button className={style.edit_btn} onClick={handleEdit}>{isEditing ? 'save' : "edit"}</button>
     )
 }
 

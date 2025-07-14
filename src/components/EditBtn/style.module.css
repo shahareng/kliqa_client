@@ -1,5 +1,5 @@
-button {
-    width: auto;
+.edit_btn {
+    width: 30px;
     background-color: inherit;
     padding: 5px;
     border-radius: 5px;

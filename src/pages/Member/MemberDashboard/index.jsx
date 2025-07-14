@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 import style from "./style.module.css"
 import { useState } from "react";
 import UserContext from "../../../context/userContext";
@@ -40,12 +40,12 @@ function MemberDashboard() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <div className={style.page}>
-        <nav className={style.nav}>
-          {/* <Link to="profile">My Profile</Link>
-      <Link to="myConnections">My Connections</Link> */}
-          <Link to="general">General</Link>
-          <Link to="jobs">Jobs</Link>
-          <Link to="community">Community</Link>
+        <nav>
+          {/* <NavLink to="profile">My Profile</NavLink>
+      <NavLink to="myConnections">My Connections</NavLink> */}
+          <NavLink to="general" className={({ isActive }) => (isActive ? style.active : '')}>General</NavLink>
+          <NavLink to="jobs" className={({ isActive }) => (isActive ? style.active : '')}>Jobs</NavLink>
+          <NavLink to="community" className={({ isActive }) => (isActive ? style.active : '')}>Community</NavLink>
         </nav>
         <Outlet />
       </div>
