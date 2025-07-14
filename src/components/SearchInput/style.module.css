@@ -1,0 +1,47 @@
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 200px;
+  flex-shrink: 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+  background-color: #eee;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2d2d2d;
+}
+
+.date, .location {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.focused {
+  transform: scale(1.2);
+  width: 240px;
+  z-index: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
