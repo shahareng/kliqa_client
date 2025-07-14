@@ -1,6 +1,8 @@
 // src/pages/Admin/UsersCards/index.jsx
+import { useState } from "react";
 import styles from "./style.module.css";
 import UserCard from "../../../components/userCardComp/UserCard";
+import SearchInput from "../../../components/SearchInput/index";
 
 const img = "https://randomuser.me/api/portraits/men/32.jpg";
 
@@ -22,33 +24,29 @@ const users = [
     occupation: "UX Designer",
     imageUrl: img,
     additionalInfo: "Specializes in user research and prototyping."
-  },
-  {
-    name: "Michael Rosenberg",
-    occupation: "Data Scientist",
-    imageUrl: img,
-    additionalInfo: "Focus on machine learning and predictive analytics."
-  },
-  {
-    name: "Rachel Green",
-    occupation: "Marketing Manager",
-    imageUrl: img,
-    additionalInfo: "Expert in digital campaigns and SEO."
-  },
-  {
-    name: "David Kim",
-    occupation: "DevOps Engineer",
-    imageUrl: img,
-    additionalInfo: "Automates deployments and optimizes infrastructure."
   }
 ];
 
 function UsersCards() {
+  const [search, setSearch] = useState("");
+
+  const filteredUsers = users.filter((user) =>
+    `${user.name} ${user.occupation} ${user.additionalInfo}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
+
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Professional Network</h1>
+      <SearchInput
+        value={search}
+        onChange={setSearch}
+        placeholder="Search users..."
+      />
+
       <div className={styles.grid}>
-        {users.map((user, idx) => (
+        {filteredUsers.map((user, idx) => (
           <UserCard
             key={idx}
             name={user.name}
