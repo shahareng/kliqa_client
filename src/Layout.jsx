@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom"
 import Login from './pages/Login';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import UsersCards from "./pages/Admin/UsersCards"
-import Events from "./pages/Admin/Events"
 import Connections from "./pages/Admin/Connections"
 import MemberDashboard from './pages/Member/MemberDashboard';
 import Profile from "./pages/Member/Profile"
@@ -18,7 +17,6 @@ function Layout() {
             <Route path="/admin" element={<AdminDashboard />}>
                 <Route index element={<div>בחר פעולה מצד שמאל</div>} />     
                 <Route path="users" element={<UsersCards />} />
-                <Route path="events" element={<Events />} />
                 <Route path="connections" element={<Connections />} />
             </Route>
 
