@@ -24,6 +24,24 @@ const users = [
     occupation: "UX Designer",
     imageUrl: img,
     additionalInfo: "Specializes in user research and prototyping."
+  },
+  {
+    name: "Dan Cohen",
+    occupation: "Product Manager",
+    imageUrl: img,
+    additionalInfo: "Leads cross-functional teams and drives strategy."
+  },
+  {
+    name: "Sara Levi",
+    occupation: "UX Designer",
+    imageUrl: img,
+    additionalInfo: "Specializes in user research and prototyping."
+  },
+  {
+    name: "Sara Levi",
+    occupation: "UX Designer",
+    imageUrl: img,
+    additionalInfo: "Specializes in user research and prototyping."
   }
 ];
 
@@ -38,12 +56,14 @@ function UsersCards() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>Professional Network</h1>
-      <SearchInput
-        value={search}
-        onChange={setSearch}
-        placeholder="Search users..."
-      />
+      <div className={styles.titles}>
+        <h1 className={styles.pageTitle}>All Members</h1>
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          placeholder="Search users..."
+        />
+      </div>
 
       <div className={styles.grid}>
         {filteredUsers.map((user, idx) => (

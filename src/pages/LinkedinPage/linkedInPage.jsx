@@ -2,8 +2,6 @@ import React, {  useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
 import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png';
-import styles from './style.module.css'; 
-
 
 function LinkedInPage() {
 
@@ -35,14 +33,14 @@ useEffect(() => {
 
   return (
       <div>
-        <h2>Sign in with LinkedIn</h2>
-        <img
-            onClick={linkedInLogin}
-            src={linkedin}
-            alt="Sign in with LinkedIn"
-            className={styles['linkedin-img-full']}
-        />
-      </div>
+      <h2>Sign in with LinkedIn</h2>
+      <img
+        onClick={linkedInLogin}
+        src={linkedin}
+        alt="Sign in with LinkedIn"
+        style={{ maxWidth: '200px', cursor: 'pointer' }}
+      />
+    </div>
   );
 }
 
