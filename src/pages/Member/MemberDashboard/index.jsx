@@ -5,7 +5,8 @@ import UserContext from "../../../context/userContext";
 import useApi from "../../../hooks/useApi";
 
 const userA = {
-  "profile_picture": "https://randomuser.me/api/portraits/men/32.jpg",
+  // "profile_picture": "https://randomuser.me/api/portraits/men/32.jpg",
+  "profile_picture": "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
   "id": "c793a2e1-4b5f-4d23-9f18-0b8c1e7f2a1b",
   "first_name": "David",
   "last_name": "Levi",
