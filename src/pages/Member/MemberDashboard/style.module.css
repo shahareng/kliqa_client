@@ -12,7 +12,8 @@ nav {
     list-style: none;
     align-items: center;
     justify-content: space-around;
-    border-bottom: 2px solid var(--background-2);
+    /* border-bottom: 2px solid var(--background-2); */
+    /* background-color: var(--background-2); */
 }
 
 nav a {

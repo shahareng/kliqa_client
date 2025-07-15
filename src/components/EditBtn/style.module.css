@@ -1,9 +1,19 @@
 .edit_btn {
-    width: 30px;
-    background-color: inherit;
-    padding: 5px;
+    width: 70px;
+    background-color: var(--background-2);
+    color: var(--purple);
+    padding: 10px;
     border-radius: 5px;
-    color: inherit;
     font-family: inherit;
-    border: 1px solid #0a66c2;
+    border: none;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
+
+.content {
+    display: flex;
+    gap: 10px;
+}
+
+.btn_icon {
+    color: var(--purple);
 }
