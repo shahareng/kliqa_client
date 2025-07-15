@@ -55,7 +55,7 @@ function MemberDashboard() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <div className={style.page}>
-        <nav>
+        <nav className={style.member_nav}>
           {/* <NavLink to="profile">My Profile</NavLink>
       <NavLink to="myConnections">My Connections</NavLink> */}
           <NavLink to="general" className={({ isActive }) => (isActive ? style.active : '')}>General</NavLink>

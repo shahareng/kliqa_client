@@ -16,8 +16,7 @@ function Layout() {
         <Routes>
             <Route path="/" element={<Login />} />
 
-            <Route path="/admin" element={<AdminDashboard />}>
-                <Route index element={<div>בחר פעולה מצד שמאל</div>} />     
+            <Route path="/admin" element={<AdminDashboard />}>     
                 <Route path="users" element={<UsersCards />} />
                 <Route path="connections" element={<Connections />} />
             </Route>
