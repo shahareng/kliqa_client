@@ -35,7 +35,7 @@ useEffect(() => {
 
   return (
     <div className={styles['linkedin-button-wrapper']}>
-      <h2>Sign in with LinkedIn</h2>
+      {/* <h2>Sign in with LinkedIn</h2> */}
       <img
         onClick={linkedInLogin}
         src={linkedin}
