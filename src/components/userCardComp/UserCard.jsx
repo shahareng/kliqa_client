@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./style.module.css";
+import { NavLink } from "react-router-dom";
 
-function UserCard({ name, occupation, imageUrl, additionalInfo }) {
+function UserCard({ id, name, occupation, imageUrl, additionalInfo }) {
   return (
-    <div className={styles.card}>
+    <NavLink className={styles.card} to={`/admin/users/${id}`}>
       <div className={styles.imgBack}>
         <img src={imageUrl} alt={name} className={styles.avatar} />
       </div>
@@ -12,7 +13,7 @@ function UserCard({ name, occupation, imageUrl, additionalInfo }) {
         <p className={styles.occupation}>{occupation}</p>
         <p className={styles.additionalInfo}>{additionalInfo}</p>
       </div>
-    </div>
+    </NavLink>
   );
 }
 
