@@ -38,15 +38,15 @@ const userA = {
 
 function MemberDashboard() {
 
-  // const [user, setUser] = useState(null);
-  const [user, setUser] = useState(userA);
+  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(userA);
   const { data, loading, error, get } = useApi();
 
-  // useEffect(() => {
-  //   get("users/1", { enableLogging: true })
-  //     .then(profile => setUser(profile))
-  //     .catch(err => console.error("Failed loading user profile", err));
-  // }, []);
+  useEffect(() => {
+    get("users/1", { enableLogging: true })
+      .then(profile => setUser(profile))
+      .catch(err => console.error("Failed loading user profile", err));
+  }, []);
 
   // console.log(user);
 

@@ -1,27 +1,43 @@
 import { FiEdit, FiSave } from "react-icons/fi"
 import style from "./style.module.css"
 
-function EditBtn({ isEditing, setIsEditing }) {
+function EditBtn({ isEditing, setIsEditing, type }) {
 
     const handleEdit = () => {
         setIsEditing(!isEditing)
     }
 
     return (
-        <button type={isEditing ? "submit" : ''} className={style.edit_btn} onClick={handleEdit}>
-            {isEditing ?
-                <div className={style.content}>
+        <>
+            {type == "submit" ?
+                <button type="submit" className={style.edit_btn}>
                     Save
                     <i className={style.btn_icon}><FiSave /></i>
-                </div>
+                </button>
                 :
-                <div className={style.content}>
+                <button type="button" className={style.edit_btn} onClick={handleEdit}>
                     Edit
                     <i className={style.btn_icon}><FiEdit /></i>
-                </div>
-            }
-        </button>
-    )
+                </button>
+      
+    }
+        </>
+    );
 }
 
 export default EditBtn
+
+
+//  <button type={type} className={style.edit_btn} onClick={handleEdit}>
+//             {isEditing ?
+//                         <div className={style.content}>
+//                             Save
+//                             <i className={style.btn_icon}><FiSave /></i>
+//                         </div>
+//                         :
+//                         <div className={style.content}>
+//                             Edit
+//                             <i className={style.btn_icon}><FiEdit /></i>
+//                         </div>
+//                     }
+//                 </button> 
