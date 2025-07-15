@@ -56,12 +56,14 @@ function UsersCards() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>All Members</h1>
-      <SearchInput
-        value={search}
-        onChange={setSearch}
-        placeholder="Search users..."
-      />
+      <div className={styles.titles}>
+        <h1 className={styles.pageTitle}>All Members</h1>
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          placeholder="Search users..."
+        />
+      </div>
 
       <div className={styles.grid}>
         {filteredUsers.map((user, idx) => (
