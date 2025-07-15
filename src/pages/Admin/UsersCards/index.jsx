@@ -8,36 +8,49 @@ const img = "https://randomuser.me/api/portraits/men/32.jpg";
 
 const users = [
   {
+    id: 91,
+    name: "David Levi",
+    occupation: "Full Stack Developer",
+    imageUrl: img,
+    additionalInfo: "Specializes in user research and prototyping"
+  },
+  {
+    id: 23,
     name: "John Doe",
     occupation: "Full Stack Developer",
     imageUrl: img,
     additionalInfo: "Experienced in building scalable web apps."
   },
   {
+    id: 56,
     name: "Dan Cohen",
     occupation: "Product Manager",
     imageUrl: img,
     additionalInfo: "Leads cross-functional teams and drives strategy."
   },
   {
+    id: 72,
     name: "Sara Levi",
     occupation: "UX Designer",
     imageUrl: img,
     additionalInfo: "Specializes in user research and prototyping."
   },
   {
+    id: 81,
     name: "Dan Cohen",
     occupation: "Product Manager",
     imageUrl: img,
     additionalInfo: "Leads cross-functional teams and drives strategy."
   },
   {
+    id: 53,
     name: "Sara Levi",
     occupation: "UX Designer",
     imageUrl: img,
     additionalInfo: "Specializes in user research and prototyping."
   },
   {
+    id: 92,
     name: "Sara Levi",
     occupation: "UX Designer",
     imageUrl: img,
@@ -69,6 +82,7 @@ function UsersCards() {
         {filteredUsers.map((user, idx) => (
           <UserCard
             key={idx}
+            id={user.id}
             name={user.name}
             occupation={user.occupation}
             imageUrl={user.imageUrl}

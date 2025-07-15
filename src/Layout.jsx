@@ -9,6 +9,7 @@ import MyConnections from "./pages/Member/MyConnections"
 import General from "./pages/Member/General"
 import Jobs from "./pages/Member/Jobs"
 import Community from "./pages/Member/Community"
+import User from "./pages/Admin/User";
 
 function Layout() {
 
@@ -16,16 +17,17 @@ function Layout() {
         <Routes>
             <Route path="/" element={<Login />} />
 
-            <Route path="/admin" element={<AdminDashboard />}>     
+            <Route path="/admin" element={<AdminDashboard />}>
                 <Route path="users" element={<UsersCards />} />
+                <Route path="users/:id" element={<User />} />
                 <Route path="connections" element={<Connections />} />
             </Route>
 
             <Route path="/members" element={<MemberDashboard />}>
                 {/* <Route path="profile" element={<Profile />} > */}
-                    <Route path="general" element={<General />} />
-                    <Route path="jobs" element={<Jobs />} />
-                    <Route path="community" element={<Community />} />
+                <Route path="general" element={<General />} />
+                <Route path="jobs" element={<Jobs />} />
+                <Route path="community" element={<Community />} />
                 {/* </Route> */}
                 <Route path="myConnections" element={<MyConnections />} />
             </Route>

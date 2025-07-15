@@ -42,13 +42,13 @@ function Jobs() {
       {user?.jobs_history ?
         isEditing ?
           <form onSubmit={() => setIsEditing(!isEditing)} className={style.edit_details}>
-              <div className={style.jobs}>
-                {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
-                  <h4>{job.company}</h4>
-                  <UserInfoField title={"from"} data={job.from} isEditing={isEditing} name={`jobs_history[${i}].from`} handleChange={handleChange} type={"date"} />
-                  <UserInfoField title={"to"} data={job.to} isEditing={isEditing} name={`jobs_history[${i}].to`} handleChange={handleChange} type={"date"} />
-                </div>)}
-              </div>
+            <div className={style.jobs}>
+              {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
+                <h4>{job.company}</h4>
+                <UserInfoField title={"from"} data={job.from} isEditing={isEditing} name={`jobs_history[${i}].from`} handleChange={handleChange} type={"date"} />
+                <UserInfoField title={"to"} data={job.to} isEditing={isEditing} name={`jobs_history[${i}].to`} handleChange={handleChange} type={"date"} />
+              </div>)}
+            </div>
           </form>
           :
           <div className={style.jobs}>
