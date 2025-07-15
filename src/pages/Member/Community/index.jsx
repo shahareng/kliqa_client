@@ -88,7 +88,11 @@ function Community() {
               <strong>Community Contribution</strong>
               <SelectOptions name={"contributions"} options={contributionsOptions} handleSelect={handleSelect} selected={selectedContributions} />
             </div>
-            <UserInfoField title={"Wants updates"} data={user.wants_updates} isEditing={isEditing} name={"wants_updates"} handleChange={handleChange} type={"checkbox"} />
+            <label className={style.updates}>
+              <strong>Wants updates</strong>
+              <input type="checkbox" name="wants_updates" value={user.wants_updates} onChange={handleChange}/>
+            </label>
+            {/* <UserInfoField title={"Wants updates"} data={user.wants_updates} isEditing={isEditing} name={"wants_updates"} handleChange={handleChange} type={"checkbox"} /> */}
           </form>
           :
           <div className={style.details}>
@@ -105,7 +109,8 @@ function Community() {
                 <SelectedItem data={c.type} />
               </div>)}
             </div>
-            <UserInfoField title={"Wants updates"} icon={user.wants_updates ? <FiBell /> : <FiBellOff />} />
+            <p className={style.updates}><strong>Wants updates</strong> <i>{user.wants_updates ? <FiBell /> : <FiBellOff />}</i></p>
+            {/* <UserInfoField title={"Wants updates"} icon={user.wants_updates ? <FiBell /> : <FiBellOff />} /> */}
           </div>
         : "loading..."}
     </div>

@@ -24,3 +24,7 @@ img {
 a {
     color: var(--purple);
 }
+
+button {
+    align-self: flex-end;
+}

@@ -22,4 +22,21 @@ strong {
 .groups {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+button {
+    align-self: flex-end;
+}
+
+.updates {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-bottom: none;
+    align-items: center;
+}
+
+.updates input {
+    width: 30px;
 }
