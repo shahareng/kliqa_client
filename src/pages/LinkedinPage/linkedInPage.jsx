@@ -2,12 +2,14 @@ import React, {  useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLinkedIn } from 'react-linkedin-login-oauth2';
 import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png';
+import styles from "./style.module.css"
+
 
 function LinkedInPage() {
 
   const location = useLocation();
   const { linkedInLogin } = useLinkedIn({
-    clientId:'77syyjt6azvxdf',//import.meta.env.VITE_CLIENT_ID,
+    clientId:'77syyjt6azvxdf',//import.meta.env.VITE_CLIENT_ID,git 
     redirectUri: `${window.location.origin}/members/general`,
     scope: 'openid profile', 
     onSuccess: (code) => {
@@ -32,14 +34,13 @@ useEffect(() => {
   }, [location]);
 
   return (
-      <div>
+    <div className={styles['linkedin-button-wrapper']}>
       <h2>Sign in with LinkedIn</h2>
       <img
         onClick={linkedInLogin}
         src={linkedin}
         alt="Sign in with LinkedIn"
-        style={{ maxWidth: '200px', cursor: 'pointer' }}
-      />
+        className={styles['linkedin-img-full']}      />
     </div>
   );
 }

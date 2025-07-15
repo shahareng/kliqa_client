@@ -1,12 +1,4 @@
-.linkedin-img-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  border: 2px solid white;
-}.linkedin-button-wrapper {
+.linkedin-button-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
