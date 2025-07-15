@@ -1,22 +1,37 @@
+import { FiLink, FiLogOut, FiUser } from "react-icons/fi";
 import style from "./style.module.css"
-import { useNavigate,  Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
+
+const navs = [
+  {
+    to: '/admin/users',
+    title: "All Members",
+    icon: <FiUser />
+  },
+  {
+    to: '/admin/connections',
+    title: "Connections",
+    icon: <FiLink />
+  },
+  {
+    to: '/logout',
+    title: "LogOut",
+    icon: <FiLogOut />
+  }
+]
 
 function AdminDashboard() {
 
-  const navigate = useNavigate();
-
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
-
   return (
     <div className={style.adminDashboard}>
-      <h1>ברוך הבא, אדמין 👋</h1>
-      <div className={style.buttonGrid}>
-        <button   className={style.adminButton} onClick={() => handleNavigate('/admin/events')}>📅 ניהול אירועים</button>
-        <button   className={style.adminButton} onClick={() => handleNavigate('/admin/users')}>👤 חיפוש משתמשים</button>
-        <button   className={style.adminButton} onClick={() => handleNavigate('/admin/connections')}>🔗 קשרים בין משתמשים</button>
-        <button   className={style.adminButton} onClick={() => handleNavigate('/logout')}>🚪 יציאה מהמערכת</button>
+      <div className={style.menu}>
+        <h1>Welcome!</h1>
+        <nav>
+          {navs.map((nav, i) => <NavLink className={({ isActive }) => (isActive ? style.active : '')} to={nav.to} key={i}>
+            {nav.title}
+            <i>{nav.icon}</i>
+          </NavLink>)}
+        </nav>
       </div>
       <Outlet />
     </div>
