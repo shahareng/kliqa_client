@@ -7,37 +7,20 @@ function EditBtn({ isEditing, setIsEditing, type }) {
         setIsEditing(!isEditing)
     }
 
-    return (
-        <>
-            {type == "submit" ?
-                <button type="submit" className={style.edit_btn}>
-                    Save
-                    <i className={style.btn_icon}><FiSave /></i>
-                </button>
-                :
-                <button type="button" className={style.edit_btn} onClick={handleEdit}>
-                    Edit
-                    <i className={style.btn_icon}><FiEdit /></i>
-                </button>
-      
-    }
-        </>
-    );
+    return (<>
+        {type == "submit" ?
+            <button type="submit" className={style.edit_btn}>
+                Save
+                <i className={style.btn_icon}><FiSave /></i>
+            </button>
+            :
+            <button type="button" className={style.edit_btn} onClick={handleEdit}>
+                Edit
+                <i className={style.btn_icon}><FiEdit /></i>
+            </button>
+
+        }
+    </>);
 }
 
 export default EditBtn
-
-
-//  <button type={type} className={style.edit_btn} onClick={handleEdit}>
-//             {isEditing ?
-//                         <div className={style.content}>
-//                             Save
-//                             <i className={style.btn_icon}><FiSave /></i>
-//                         </div>
-//                         :
-//                         <div className={style.content}>
-//                             Edit
-//                             <i className={style.btn_icon}><FiEdit /></i>
-//                         </div>
-//                     }
-//                 </button> 

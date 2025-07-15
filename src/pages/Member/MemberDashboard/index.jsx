@@ -43,7 +43,7 @@ function MemberDashboard() {
   const { data, loading, error, get } = useApi();
 
   useEffect(() => {
-    get("users/1", { enableLogging: true })
+    get("users/11", { enableLogging: true })
       .then(profile => setUser(profile))
       .catch(err => console.error("Failed loading user profile", err));
   }, []);

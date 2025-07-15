@@ -23,7 +23,7 @@ function General() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const updated = await put("users/update/1", {
+      const updated = await put("users/update/11", {
         body: user,
         enableLogging: true,
       });
@@ -51,8 +51,6 @@ function General() {
             <UserInfoField title={"Linkedin Profile"} data={user.linkedin_url} icon={<FiLinkedin />} isEditing={isEditing} name={"linkedin_url"} handleChange={handleChange} type={"url"} />
             <UserInfoField title={"Facebook Profile"} data={user.facebook_url} icon={<FiFacebook />} isEditing={isEditing} name={"facebook_url"} handleChange={handleChange} type={"url"} />
             <UserInfoField title={"Additional Info"} data={user.additional_info} icon={<FiInfo />} isEditing={isEditing} name={"additional_info"} handleChange={handleChange} type={"textArea"} />
-            {/* <button type="submit">save</button> */}
-            {/* <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} /> */}
           </form>
           :
           <div className={style.details}>
