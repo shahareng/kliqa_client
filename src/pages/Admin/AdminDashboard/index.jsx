@@ -1,4 +1,4 @@
-import { FiLink, FiLogOut, FiUser } from "react-icons/fi";
+import { FiCalendar, FiLink, FiLogOut, FiUser } from "react-icons/fi";
 import style from "./style.module.css"
 import { Outlet, NavLink } from 'react-router-dom';
 
@@ -7,6 +7,11 @@ const navs = [
     to: '/admin/users',
     title: "All Members",
     icon: <FiUser />
+  },
+  {
+    to: '/admin/events',
+    title: "Events",
+    icon: <FiCalendar />
   },
   {
     to: '/admin/connections',
