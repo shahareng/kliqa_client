@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import style from "./style.module.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditBtn from "../../../components/EditBtn";
 import UserInfoField from "../../../components/UserInfoField";
 import { CiCalendarDate } from "react-icons/ci";
 import { FiAtSign, FiBell, FiBellOff, FiFacebook, FiInfo, FiLinkedin, FiMapPin, FiPhone, FiUser, FiUsers } from "react-icons/fi";
 import SelectOptions from "../../../components/SelectOptions";
 import SelectedItem from "../../../components/SelectedItem";
+import useApi from "../../../hooks/useApi";
 
 const user1 = {
     id: 1,
@@ -107,10 +108,25 @@ const contributionsOptions = [
     { label: "Sponsorship / Funding Support", value: "sponsorship" }
 ];
 
+const img = "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg";
+
 function User() {
 
-    const [user, setUser] = useState(userA);
+    const { id } = useParams()
+
+    const [user, setUser] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
+
+    let { data, loading, error, callApi: fetchUser } = useApi(`/users/${id}`)
+    const {
+        callApi: saveUser,
+    } = useApi(`/users/update/${id}`, "PUT", user);
+
+    useEffect(() => {
+        fetchUser()
+            .then(res => setUser(res))
+            .catch(err => console.error("שגיאה ב‑GET משתמשים:", err));
+    }, []);
 
     const handleChange = (event) => {
         const { name, type, checked, value } = event.target;
@@ -140,35 +156,48 @@ function User() {
         }));
     };
 
-    const selectedGroups = groupsOptions.filter(o =>
-        user.groups.some(g => g.name === o.value)
-    );
-    const selectedContributions = contributionsOptions.filter(o =>
-        user.contributions.some(c => c.type === o.value)
-    );
+    const handleSave = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await saveUser();
+            console.log("הנתונים נשמרו בהצלחה", res);
+            setIsEditing(!isEditing)
+        } catch (err) {
+            console.error("update error", err);
+        }
+    };
 
-    const { id } = useParams()
+    // const selectedGroups = groupsOptions.filter(o =>
+    //     user.groups.some(g => g.name === o.value)
+    // );
+    // const selectedContributions = contributionsOptions.filter(o =>
+    //     user.contributions.some(c => c.type === o.value)
+    // );
+
+    if (loading) return <div>Loading...</div>
+    if (error) return error
 
     return (<div className={style.user}>
         <div className={style.title}>
-            <img src={user.profile_picture} alt="profile_img" className={style.picture} />
+            <img src={img || user.profile_picture} alt="profile_img" className={style.picture} />
             <div className={style.prof}>
                 <h1>{user.first_name} {user.last_name}</h1>
                 <h3>{user.phone}</h3>
                 <h3>{user.email}</h3>
             </div>
         </div>
-        <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
+        {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
 
         {isEditing ?
-            <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
+            <form onSubmit={handleSave} className={style.details}>
+                <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
                 <div className={style.jobs}>
                     <h2>Jobs</h2>
-                    {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
-                        <h4>{job.company}</h4>
+                    {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
+                        <h4>{job.company_id}</h4>
                         <h5>{job.job_title}</h5>
-                        <UserInfoField title={"from"} data={job.from} isEditing={isEditing} name={`JobsHistories[${i}].from`} handleChange={handleChange} type={"date"} />
-                        <UserInfoField title={"to"} data={job.to} isEditing={isEditing} name={`JobsHistories[${i}].to`} handleChange={handleChange} type={"date"} />
+                        <UserInfoField title={"from"} data={job.start_date} isEditing={isEditing} name={`JobsHistories[${i}].start_date`} handleChange={handleChange} type={"date"} />
+                        <UserInfoField title={"to"} data={job.end_date} isEditing={isEditing} name={`JobsHistories[${i}].end_date`} handleChange={handleChange} type={"date"} />
                     </div>)}
                 </div>
                 <div className={style.general}>
@@ -181,7 +210,7 @@ function User() {
                     <UserInfoField title={"Facebook Profile"} data={user.facebook_url} icon={<FiFacebook />} isEditing={isEditing} name={"facebook_url"} handleChange={handleChange} type={"url"} />
                     <UserInfoField title={"Additional Info"} data={user.additional_info} icon={<FiInfo />} isEditing={isEditing} name={"additional_info"} handleChange={handleChange} type={"textArea"} />
                 </div>
-                <div className={style.community}>
+                {/* <div className={style.community}>
                     <h2>Community</h2>
                     <strong>Groups</strong>
                     <SelectOptions name={"groups"} options={groupsOptions} handleSelect={handleSelect} selected={selectedGroups} />
@@ -194,19 +223,24 @@ function User() {
                         <strong>Wants updates</strong>
                         <input type="checkbox" name="wants_updates" value={user.wants_updates} onChange={handleChange} />
                     </label>
-                </div>
+                </div> */}
             </form>
             :
             <div className={style.details}>
+
                 <div className={style.jobs}>
                     <h2>Jobs</h2>
-                    {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
-                        <h4>{job.company}</h4>
-                        <h5>{job.job_title}</h5>
-                        <UserInfoField title={"from"} data={job.from} icon={<CiCalendarDate />} />
-                        <UserInfoField title={"to"} data={job.to == null ? "today" : job.to} icon={<CiCalendarDate />} />
-                    </div>)}
+                    {user.JobsHistories.length ?
+                        user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
+                            <h4>{job.company_id}</h4>
+                            <h5>{job.job_title}</h5>
+                            <UserInfoField title={"from"} data={job.start_date} icon={<CiCalendarDate />} />
+                            <UserInfoField title={"to"} data={job.end_date == null ? "today" : job.end_date} icon={<CiCalendarDate />} />
+                        </div>)
+                        : "No jobs to display"
+                    }
                 </div>
+
                 <div className={style.general}>
                     <UserInfoField title={"First Name"} data={user.first_name} icon={<FiUser />} />
                     <UserInfoField title={"Last Name"} data={user.last_name} icon={<FiUser />} />
@@ -217,7 +251,7 @@ function User() {
                     <UserInfoField title={"Facebook Profile"} data={user.facebook_url} icon={<FiFacebook />} />
                     <UserInfoField title={"Additional Info"} data={user.additional_info} icon={<FiInfo />} />
                 </div>
-                <div className={style.community}>
+                {/* <div className={style.community}>
                     <h2>Community</h2>
                     <strong>Groups</strong>
                     <div className={style.groups}>
@@ -233,7 +267,7 @@ function User() {
                         </div>)}
                     </div>
                     <p className={style.updates}><strong>Wants updates</strong> <i>{user.wants_updates ? <FiBell /> : <FiBellOff />}</i></p>
-                </div>
+                </div> */}
             </div>
         }
     </div>

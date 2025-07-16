@@ -96,7 +96,7 @@ function Community() {
 
       {user?.groups ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
+          <form onSubmit={handleSave} className={style.details}>
             <strong>Groups</strong>
             <SelectOptions name={"groups"} options={groupsOptions} handleSelect={handleSelect} selected={selectedGroups} />
             <UserInfoField title={"Value from the community"} data={user.community_value} icon={<FiUsers />} isEditing={isEditing} name={"community_value"} handleChange={handleChange} type={"textArea"} />
