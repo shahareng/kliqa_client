@@ -6,6 +6,7 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
   text-align: center;
+  text-decoration: none;
 }
 
 .card:hover {

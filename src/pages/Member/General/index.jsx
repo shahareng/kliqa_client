@@ -12,7 +12,9 @@ function General() {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
 
-  const { data, loading, error, put } = useApi();
+  const {
+    callApi: saveUser,
+  } = useApi(`/users/update/105`, "PUT", user);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -23,10 +25,8 @@ function General() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const updated = await put("users/1", {
-        body: user,
-        enableLogging: true,
-      });
+      const res = await saveUser();
+      console.log("הנתונים נשמרו בהצלחה", res);
       setIsEditing(!isEditing)
     } catch (err) {
       console.error("update error", err);
@@ -35,14 +35,14 @@ function General() {
 
   return (
     <div className={style.profile}>
-      <img src={user.profile_picture} alt="profile_img" />
-      <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
+      {/* <img src={user.profile_picture} alt="profile_img" /> */}
+      {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
 
       {user?.first_name ?
         isEditing ?
-          // <form onSubmit={handleSave} className={style.details}>
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
-            {/* <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} /> */}
+          <form onSubmit={handleSave} className={style.details}>
+            {/* <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}> */}
+            <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
             <UserInfoField title={"First Name"} data={user.first_name} icon={<FiUser />} isEditing={isEditing} name={"first_name"} handleChange={handleChange} />
             <UserInfoField title={"Last Name"} data={user.last_name} icon={<FiUser />} isEditing={isEditing} name={"last_name"} handleChange={handleChange} />
             <UserInfoField title={"Phone"} data={user.phone} icon={<FiPhone />} isEditing={isEditing} name={"phone"} handleChange={handleChange} />

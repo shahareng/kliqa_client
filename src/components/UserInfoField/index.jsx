@@ -1,6 +1,6 @@
 import style from "./style.module.css"
 
-function UserInfoField({ title, data, icon, isEditing, name, handleChange, type }) {
+function UserInfoField({ title, data, icon, isEditing, name, handleChange, type="text" }) {
 
     return (
         <label>

@@ -26,7 +26,7 @@ function AdminDashboard() {
     <div className={style.adminDashboard}>
       <div className={style.menu}>
         <h1>Welcome!</h1>
-        <nav>
+        <nav className={style.admin_nav}>
           {navs.map((nav, i) => <NavLink className={({ isActive }) => (isActive ? style.active : '')} to={nav.to} key={i}>
             {nav.title}
             <i>{nav.icon}</i>

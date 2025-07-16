@@ -38,24 +38,24 @@ const userA = {
 
 function MemberDashboard() {
 
-  // const [user, setUser] = useState(null);
-  const [user, setUser] = useState(userA);
-  const { data, loading, error, get } = useApi();
+  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(userA);
 
-  // useEffect(() => {
-  //   get("users/1", { enableLogging: true })
-  //     .then(profile => setUser(profile))
-  //     .catch(err => console.error("Failed loading user profile", err));
-  // }, []);
+  let { data, loading, error, callApi: fetchUser } = useApi(`/users/105`)
 
-  // console.log(user);
+  useEffect(() => {
+    fetchUser()
+      .then(res => setUser(res))
+      .catch(err => console.error("שגיאה ב‑GET משתמש:", err));
+  }, []);
 
-
+  if (loading) return <div>Loading...</div>
+  if (error) return error
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <div className={style.page}>
-        <nav>
+        <nav className={style.member_nav}>
           {/* <NavLink to="profile">My Profile</NavLink>
       <NavLink to="myConnections">My Connections</NavLink> */}
           <NavLink to="general" className={({ isActive }) => (isActive ? style.active : '')}>General</NavLink>

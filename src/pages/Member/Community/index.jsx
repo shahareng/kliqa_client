@@ -7,6 +7,7 @@ import SelectOptions from "../../../components/SelectOptions";
 import UserInfoField from "../../../components/UserInfoField";
 import { FiBell, FiBellOff, FiUsers } from "react-icons/fi";
 import SelectedItem from "../../../components/SelectedItem";
+import useApi from "../../../hooks/useApi";
 
 const groupsOptions = [
   { label: "Junior Developers", value: "junior_developers" },
@@ -39,6 +40,10 @@ function Community() {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
 
+  const {
+    callApi: saveUser,
+  } = useApi(`/users/update/105`, "PUT", user);
+
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
     const newValue = type === 'checkbox' ? checked : value;
@@ -67,6 +72,17 @@ function Community() {
     }));
   };
 
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await saveUser();
+      console.log("הנתונים נשמרו בהצלחה", res);
+      setIsEditing(!isEditing)
+    } catch (err) {
+      console.error("update error", err);
+    }
+  };
+
   const selectedGroups = groupsOptions.filter(o =>
     user.groups.some(g => g.name === o.value)
   );
@@ -80,7 +96,7 @@ function Community() {
 
       {user?.groups ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}>
+          <form onSubmit={handleSave} className={style.details}>
             <strong>Groups</strong>
             <SelectOptions name={"groups"} options={groupsOptions} handleSelect={handleSelect} selected={selectedGroups} />
             <UserInfoField title={"Value from the community"} data={user.community_value} icon={<FiUsers />} isEditing={isEditing} name={"community_value"} handleChange={handleChange} type={"textArea"} />

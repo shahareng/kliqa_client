@@ -5,17 +5,16 @@ import UserContext from "../../../context/userContext";
 import UserInfoField from "../../../components/UserInfoField";
 import { MdWorkOutline } from "react-icons/md";
 import { CiCalendarDate } from "react-icons/ci";
+import useApi from "../../../hooks/useApi";
 
 function Jobs() {
 
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
 
-  // const handleChange = (event) => {
-  //   const name = event.target.name;
-  //   const value = event.target.value;
-  //   setUser(values => ({ ...values, [name]: value }))
-  // }
+  const {
+    callApi: saveUser,
+  } = useApi(`/users/update/105`, "PUT", user);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -34,31 +33,44 @@ function Jobs() {
     }
   };
 
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await saveUser();
+      console.log("הנתונים נשמרו בהצלחה", res);
+      setIsEditing(!isEditing)
+    } catch (err) {
+      console.error("update error", err);
+    }
+  };
+
   return (
     <div className={style.profile}>
-      {/* <h1>Jobs</h1> */}
-      <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} />
+      {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
 
       {user?.jobs_history ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.edit_details}>
-              <div className={style.jobs}>
-                {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
-                  <h4>{job.company}</h4>
-                  <UserInfoField title={"from"} data={job.from} isEditing={isEditing} name={`jobs_history[${i}].from`} handleChange={handleChange} type={"date"} />
-                  <UserInfoField title={"to"} data={job.to} isEditing={isEditing} name={`jobs_history[${i}].to`} handleChange={handleChange} type={"date"} />
-                </div>)}
-              </div>
+          <form onSubmit={handleSave} className={style.edit_details}>
+            <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
+            <div className={style.jobs}>
+              {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
+                <h4>{job.company_id}</h4>
+                <h5>{job.job_title}</h5>
+                <UserInfoField title={"from"} data={job.start_date} isEditing={isEditing} name={`JobsHistories[${i}].start_date`} handleChange={handleChange} type={"date"} />
+                <UserInfoField title={"to"} data={job.end_date} isEditing={isEditing} name={`JobsHistories[${i}].end_date`} handleChange={handleChange} type={"date"} />
+              </div>)}
+            </div>
           </form>
           :
           <div className={style.jobs}>
-            {user.jobs_history.map((job, i) => <div className={style.job} key={i}>
-              <h4>{job.company}</h4>
-              <UserInfoField title={"from"} data={job.from} icon={<CiCalendarDate />} />
-              <UserInfoField title={"to"} data={job.to == null ? "today" : job.to} icon={<CiCalendarDate />} />
+            {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
+              <h4>{job.company_id}</h4>
+              <h5>{job.job_title}</h5>
+              <UserInfoField title={"from"} data={job.start_date} icon={<CiCalendarDate />} />
+              <UserInfoField title={"to"} data={job.end_date == null ? "today" : job.end_date} icon={<CiCalendarDate />} />
             </div>)}
           </div>
-        : "loading..."}
+        : "No jobs to display"}
     </div>
   )
 }
