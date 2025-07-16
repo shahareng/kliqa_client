@@ -12,7 +12,9 @@ function Jobs() {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
 
-  const { data, loading, error, put } = useApi();
+  const {
+    callApi: saveUser,
+  } = useApi(`/users/update/105`, "PUT", user);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -34,10 +36,8 @@ function Jobs() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const updated = await put("users/update/105", {
-        body: user,
-        enableLogging: true,
-      });
+      const res = await saveUser();
+      console.log("הנתונים נשמרו בהצלחה", res);
       setIsEditing(!isEditing)
     } catch (err) {
       console.error("update error", err);

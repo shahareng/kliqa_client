@@ -40,17 +40,17 @@ function MemberDashboard() {
 
   const [user, setUser] = useState(null);
   // const [user, setUser] = useState(userA);
-  const { data, loading, error, get } = useApi();
+
+  let { data, loading, error, callApi: fetchUser } = useApi(`/users/105`)
 
   useEffect(() => {
-    get("users/105", { enableLogging: true })
-      .then(profile => setUser(profile))
-      .catch(err => console.error("Failed loading user profile", err));
+    fetchUser()
+      .then(res => setUser(res))
+      .catch(err => console.error("שגיאה ב‑GET משתמש:", err));
   }, []);
 
-  // console.log(user);
-
-
+  if (loading) return <div>Loading...</div>
+  if (error) return error
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
