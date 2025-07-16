@@ -19,7 +19,7 @@
 
 .events {
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     align-self: center;
     flex-wrap: wrap;
 }
@@ -31,4 +31,10 @@
     width: 200px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.event:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }

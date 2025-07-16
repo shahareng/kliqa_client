@@ -60,8 +60,6 @@ function NewEvent() {
     const handleSave = async (e) => {
         e.preventDefault();
         try {
-            // setEventObj(values => ({ ...values, id : 96 }))
-            console.log(eventObj);
             const res = await saveEvent();
             console.log("הנתונים נשמרו בהצלחה", res);
             setIsEditing(!isEditing)
