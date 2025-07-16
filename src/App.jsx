@@ -6,13 +6,13 @@ import AdminImportSection from "./components/UploadExcelCV/AdminImportSection";
 function App() {
 
   return (
-    <>
-      <Layout />
-      <LinkedInPage />
-     <h1>מערכת ניהול משתמשים</h1>
-      <AdminImportSection />
-    </>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+        {/*<Layout />*/}
+        {/*<LinkedInPage />*/}
+       <h1>מערכת ניהול משתמשים</h1>
+        <AdminImportSection />
+    </div>
   );
 };
 
-export default App
+export default App;
