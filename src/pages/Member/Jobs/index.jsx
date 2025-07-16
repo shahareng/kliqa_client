@@ -34,7 +34,7 @@ function Jobs() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const updated = await put("users/update/11", {
+      const updated = await put("users/update/105", {
         body: user,
         enableLogging: true,
       });
@@ -70,7 +70,7 @@ function Jobs() {
               <UserInfoField title={"to"} data={job.end_date == null ? "today" : job.end_date} icon={<CiCalendarDate />} />
             </div>)}
           </div>
-        : "loading..."}
+        : "No jobs to display"}
     </div>
   )
 }

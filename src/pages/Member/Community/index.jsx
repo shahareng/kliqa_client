@@ -7,6 +7,7 @@ import SelectOptions from "../../../components/SelectOptions";
 import UserInfoField from "../../../components/UserInfoField";
 import { FiBell, FiBellOff, FiUsers } from "react-icons/fi";
 import SelectedItem from "../../../components/SelectedItem";
+import useApi from "../../../hooks/useApi";
 
 const groupsOptions = [
   { label: "Junior Developers", value: "junior_developers" },
@@ -39,6 +40,8 @@ function Community() {
   const { user, setUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
 
+  const { data, loading, error, put } = useApi()
+
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
     const newValue = type === 'checkbox' ? checked : value;
@@ -65,6 +68,19 @@ function Community() {
           : { contribution_id: s.value, type: s.value }
       )
     }));
+  };
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    try {
+      const updated = await put("users/update/105", {
+        body: user,
+        enableLogging: true,
+      });
+      setIsEditing(!isEditing)
+    } catch (err) {
+      console.error("update error", err);
+    }
   };
 
   const selectedGroups = groupsOptions.filter(o =>

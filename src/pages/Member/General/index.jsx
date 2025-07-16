@@ -23,7 +23,7 @@ function General() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const updated = await put("users/update/11", {
+      const updated = await put("users/update/105", {
         body: user,
         enableLogging: true,
       });
