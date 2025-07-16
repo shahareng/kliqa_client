@@ -3,7 +3,7 @@ import style from "./style.module.css"
 import useApi from "../../../hooks/useApi";
 import { useEffect, useState } from "react";
 import UserInfoField from "../../../components/UserInfoField";
-import { FiAtSign, FiPhone, FiUser } from "react-icons/fi";
+import { FiAtSign, FiCalendar, FiMapPin, FiPhone, FiUser } from "react-icons/fi";
 import LinkedInPage from "../../LinkedinPage/linkedInPage";
 
 const img = "https://images.unsplash.com/photo-1733222765056-b0790217baa9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -79,12 +79,13 @@ function RegisterEvent() {
     if (loading) return <div>Loading...</div>
     if (error) return error
 
-    return <div className={style.event_page}>
+    return <div className={style.register_page}>
         <div className={style.details}>
             <img src={img} alt="event_img" className={style.event_img} />
             <div className={style.description}>
                 <h1>{data.event_name}</h1>
-                <h3>{data.location} | {data.event_date}</h3>
+                <h3><i><FiCalendar /></i>{data.event_date}</h3>
+                <h3><i><FiMapPin /></i>{data.location}</h3>
                 <p>
                     Join us for an inspiring evening of community connection and knowledge sharing. Whether you're looking to expand your network, learn something new, or simply enjoy great conversations, this event offers:
                 </p>
@@ -102,24 +103,27 @@ function RegisterEvent() {
                 </ul>
             </div>
         </div>
-        <div className={style.register}>
-            {!registed ?
-                <>
-                    <h4>Register Now:</h4>
-                    <LinkedInPage />
-                    <h4>---- OR ----</h4>
-                    <form onSubmit={handleSave} className={style.form_register}>
-                        <div className={style.fileds}>
-                            {formLabels.map((label, i) => <UserInfoField
-                                title={label.title} data={user[label.name]} icon={label.icon} isEditing={isEditing} name={label.name} handleChange={handleChange} type={label.type} />)}
-                        </div>
-                        <button type="submit" className={style.register_btn}>Register</button>
-                    </form>
-                </>
-                :
-                <div>You have successfully registered!</div>
-            }
-        </div>
+        {new Date(data.event_date) > new Date() ?
+            <div className={style.register}>
+                {!registed ?
+                    <>
+                        <h4>Register Now:</h4>
+                        <LinkedInPage />
+                        <h4>---- OR ----</h4>
+                        <form onSubmit={handleSave} className={style.form_register}>
+                            <div className={style.fileds}>
+                                {formLabels.map((label, i) => <UserInfoField
+                                    title={label.title} data={user[label.name]} icon={label.icon} isEditing={isEditing} name={label.name} handleChange={handleChange} type={label.type} />)}
+                            </div>
+                            <button type="submit" className={style.register_btn}>Register</button>
+                        </form>
+                    </>
+                    :
+                    <div>You have successfully registered!</div>
+                }
+            </div>
+            :
+            <div className={style.register}>The event has concluded—thank you for your interest. We look forward to welcoming you at future events</div>}
     </div>
 
 }
