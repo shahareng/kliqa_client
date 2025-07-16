@@ -12,7 +12,8 @@ import Community from "./pages/Member/Community"
 import User from "./pages/Admin/User";
 import Events from "./pages/Admin/Events";
 import Event from "./pages/Admin/Event";
-import RegisterEvent from "./pages/Admin/RegisterEvent";
+import RegisterEvent from "./pages/RegisterEvent";
+import ArrivedToEvent from "./pages/ArrivedToEvent";
 import NewEvent from "./pages/Admin/NewEvent";
 
 function Layout() {
@@ -30,6 +31,7 @@ function Layout() {
                 <Route path="connections" element={<Connections />} />
             </Route>
             <Route path="/events/register/:id" element={<RegisterEvent />} />
+            <Route path="/events/arrived_to/:id" element={<ArrivedToEvent />} />
 
             <Route path="/members" element={<MemberDashboard />}>
                 {/* <Route path="profile" element={<Profile />} > */}

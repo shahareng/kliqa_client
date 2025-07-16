@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom"
 import style from "./style.module.css"
-import useApi from "../../../hooks/useApi";
+import useApi from "../../hooks/useApi";
 import { useEffect, useState } from "react";
-import UserInfoField from "../../../components/UserInfoField";
+import UserInfoField from "../../components/UserInfoField";
 import { FiAtSign, FiCalendar, FiMapPin, FiPhone, FiUser } from "react-icons/fi";
-import LinkedInPage from "../../LinkedinPage/linkedInPage";
+import LinkedInPage from "../LinkedinPage/linkedInPage";
 
 const img = "https://images.unsplash.com/photo-1733222765056-b0790217baa9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
@@ -51,6 +51,7 @@ function RegisterEvent() {
     const {
         callApi: saveUser,
     } = useApi(`/users/add`, "POST", user);
+    // TO-DO: After create user, we need to creat event_user
 
     useEffect(() => {
         fetchEvent()
