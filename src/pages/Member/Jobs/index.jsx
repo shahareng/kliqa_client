@@ -50,7 +50,7 @@ function Jobs() {
 
       {user?.jobs_history ?
         isEditing ?
-          <form onSubmit={() => setIsEditing(!isEditing)} className={style.edit_details}>
+          <form onSubmit={handleSave} className={style.edit_details}>
             <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
             <div className={style.jobs}>
               {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
