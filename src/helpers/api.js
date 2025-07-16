@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const api = async ({ url, method = 'GET', headers = {}, params = {}, body = {} }) => {
+export const api = async ({ url, method = 'GET', params = {}, body = {} }) => {
     console.log('here api', params);
 
     const res = await axios({ url: `http://localhost:2500/${url}`, data: body, method, params })
