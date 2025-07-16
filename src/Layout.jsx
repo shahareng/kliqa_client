@@ -11,6 +11,8 @@ import Jobs from "./pages/Member/Jobs"
 import Community from "./pages/Member/Community"
 import User from "./pages/Admin/User";
 import Events from "./pages/Admin/Events";
+// import Event from "./pages/Admin/Event";
+import RegisterEvent from "./pages/Admin/RegisterEvent";
 import NewEvent from "./pages/Admin/NewEvent";
 
 function Layout() {
@@ -24,6 +26,8 @@ function Layout() {
                 <Route path="users/:id" element={<User />} />
                 <Route path="events" element={<Events />} />
                 <Route path="events/new" element={<NewEvent />} />
+                {/* <Route path="events/:id" element={<Event />} /> */}
+                <Route path="events/register/:id" element={<RegisterEvent />} />
                 <Route path="connections" element={<Connections />} />
             </Route>
 
