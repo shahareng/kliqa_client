@@ -19,11 +19,11 @@ function Events() {
         <h1>Events</h1>
         <NavLink className={style.new_event_btn} to={'new'}>Add New Event</NavLink>
         <div className={style.events}>
-            {data.map((event, i) => <div key={i} className={style.event}>
+            {data.sort((a, b) => new Date(a.event_date) - new Date(b.event_date)).map((event, i) => <NavLink key={i} className={style.event} to={`${event.id}`}> 
                 <h3>{event.event_name}</h3>
                 <h4>{event.location}</h4>
                 <h4>{event.event_date}</h4>
-            </div>)}
+            </NavLink>)}
         </div>
     </div>
 }
