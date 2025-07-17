@@ -83,10 +83,9 @@ function General() {
 
   return (
     <div className={style.profile}>
-      {user?.first_name
-        ?
+      {user?.first_name ?
         <>
-          <img src={img || user.profile_picture} alt="profile_img" className={style.profile_img}/>
+          <img src={img || user.profile_picture} alt="profile_img" className={style.profile_img} />
           {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
 
           {isEditing ?
