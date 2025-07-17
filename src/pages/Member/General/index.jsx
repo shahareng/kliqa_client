@@ -7,6 +7,54 @@ import UserInfoField from "../../../components/UserInfoField";
 
 import { FiAtSign, FiFacebook, FiInfo, FiLinkedin, FiMapPin, FiPhone, FiUser } from "react-icons/fi";
 
+const labels = [
+  {
+    title: "First Name",
+    icon: <FiUser />,
+    name: "first_name",
+  },
+  {
+    title: "Last Name",
+    icon: <FiUser />,
+    name: "last_name",
+  },
+  {
+    title: "Phone",
+    icon: <FiPhone />,
+    name: "phone",
+  },
+  {
+    title: "Email",
+    icon: <FiAtSign />,
+    name: "email",
+  },
+  {
+    title: "City",
+    icon: <FiMapPin />,
+    name: "city",
+  },
+  {
+    title: "Linkedin Profile",
+    icon: <FiLinkedin />,
+    name: "linkedin_url",
+    type: "url"
+  },
+  {
+    title: "Facebook Profile",
+    icon: <FiFacebook />,
+    name: "facebook_url",
+    type: "url"
+  },
+  {
+    title: "Additional Info",
+    icon: <FiInfo />,
+    name: "additional_info",
+    type: "textarea"
+  },
+
+]
+const img = "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg";
+
 function General() {
 
   const { user, setUser } = useContext(UserContext);
@@ -35,34 +83,34 @@ function General() {
 
   return (
     <div className={style.profile}>
-      {/* <img src={user.profile_picture} alt="profile_img" /> */}
-      {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
+      {user?.first_name
+        ?
+        <>
+          <img src={img || user.profile_picture} alt="profile_img" className={style.profile_img}/>
+          {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
 
-      {user?.first_name ?
-        isEditing ?
-          <form onSubmit={handleSave} className={style.details}>
-            {/* <form onSubmit={() => setIsEditing(!isEditing)} className={style.details}> */}
-            <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
-            <UserInfoField title={"First Name"} data={user.first_name} icon={<FiUser />} isEditing={isEditing} name={"first_name"} handleChange={handleChange} />
-            <UserInfoField title={"Last Name"} data={user.last_name} icon={<FiUser />} isEditing={isEditing} name={"last_name"} handleChange={handleChange} />
-            <UserInfoField title={"Phone"} data={user.phone} icon={<FiPhone />} isEditing={isEditing} name={"phone"} handleChange={handleChange} />
-            <UserInfoField title={"Email"} data={user.email} icon={<FiAtSign />} isEditing={isEditing} name={"email"} handleChange={handleChange} />
-            <UserInfoField title={"City"} data={user.city} icon={<FiMapPin />} isEditing={isEditing} name={"city"} handleChange={handleChange} />
-            <UserInfoField title={"Linkedin Profile"} data={user.linkedin_url} icon={<FiLinkedin />} isEditing={isEditing} name={"linkedin_url"} handleChange={handleChange} type={"url"} />
-            <UserInfoField title={"Facebook Profile"} data={user.facebook_url} icon={<FiFacebook />} isEditing={isEditing} name={"facebook_url"} handleChange={handleChange} type={"url"} />
-            <UserInfoField title={"Additional Info"} data={user.additional_info} icon={<FiInfo />} isEditing={isEditing} name={"additional_info"} handleChange={handleChange} type={"textArea"} />
-          </form>
-          :
-          <div className={style.details}>
-            <UserInfoField title={"First Name"} data={user.first_name} icon={<FiUser />} />
-            <UserInfoField title={"Last Name"} data={user.last_name} icon={<FiUser />} />
-            <UserInfoField title={"Phone"} data={user.phone} icon={<FiPhone />} />
-            <UserInfoField title={"Email"} data={user.email} icon={<FiAtSign />} />
-            <UserInfoField title={"City"} data={user.city} icon={<FiMapPin />} />
-            <UserInfoField title={"Linkedin Profile"} data={user.linkedin_url} icon={<FiLinkedin />} />
-            <UserInfoField title={"Facebook Profile"} data={user.facebook_url} icon={<FiFacebook />} />
-            <UserInfoField title={"Additional Info"} data={user.additional_info} icon={<FiInfo />} />
-          </div>
+          {isEditing ?
+            <form onSubmit={handleSave} className={style.details}>
+              <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
+              {labels.map((label, i) => <UserInfoField
+                key={i}
+                title={label.title}
+                data={user[label.name]}
+                icon={label.icon}
+                isEditing={isEditing}
+                name={label.name}
+                handleChange={handleChange}
+                type={label.type || 'text'} />)}
+            </form>
+            :
+            <div className={style.details}>
+              {labels.map((label, i) => <UserInfoField
+                key={i}
+                title={label.title}
+                data={user[label.name]}
+                icon={label.icon} />)}
+            </div>}
+        </>
         : "loading..."}
     </div>
   );

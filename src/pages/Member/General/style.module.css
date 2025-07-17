@@ -14,7 +14,7 @@
     padding: 5px;
 }
 
-img {
+.profile_img {
     width: 25%;
     border-radius: 50%;
     align-self: center;
