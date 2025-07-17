@@ -84,12 +84,15 @@ function GPTAssistant() {
 
           {parsedUserData && lastIntent === "parse-user" && showParsedPreview && (
             <div className={style.userPreview}>
-              <pre>{JSON.stringify(parsedUserData, null, 2)}</pre>
+              <div style={{ maxHeight: "200px", overflow: "auto", direction: "ltr" }}>
+                <pre>{JSON.stringify(parsedUserData, null, 2)}</pre>
+              </div>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: "0.5rem" }}>
                 <button onClick={handleCreateUser}>✔ הוסף למערכת</button>
                 <button onClick={() => setShowParsedPreview(false)}>❌ סגור</button>
               </div>    
             </div>
+
           )}
 
 
