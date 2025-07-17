@@ -1,4 +1,4 @@
-import { FiLink, FiLogOut, FiUser } from "react-icons/fi";
+import { FiCalendar, FiLink, FiLogOut, FiUser } from "react-icons/fi";
 import style from "./style.module.css"
 import { Outlet, NavLink } from 'react-router-dom';
 
@@ -9,12 +9,17 @@ const navs = [
     icon: <FiUser />
   },
   {
+    to: '/admin/events',
+    title: "Events",
+    icon: <FiCalendar />
+  },
+  {
     to: '/admin/connections',
     title: "Connections",
     icon: <FiLink />
   },
   {
-    to: '/logout',
+    to: '/',
     title: "LogOut",
     icon: <FiLogOut />
   }
@@ -25,7 +30,11 @@ function AdminDashboard() {
   return (
     <div className={style.adminDashboard}>
       <div className={style.menu}>
-        <h1>Welcome!</h1>
+        <h2 className={style.header}>
+          Welcome To
+          <img className={style.logo} src="kliqaImg.png" alt="kliqa_logo" />
+        </h2>
+        <div className={style.line}></div>
         <nav className={style.admin_nav}>
           {navs.map((nav, i) => <NavLink className={({ isActive }) => (isActive ? style.active : '')} to={nav.to} key={i}>
             {nav.title}

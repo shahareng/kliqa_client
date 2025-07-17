@@ -13,11 +13,13 @@ strong {
 .info {
     display: flex;
     justify-content: space-between;
+    /* justify-content: start; */
     padding: 0 5px;
 }
 
 i {
     color: var(--purple);
+    /* justify-self: end; */
 }
 
 input,
