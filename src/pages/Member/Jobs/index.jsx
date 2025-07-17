@@ -48,26 +48,19 @@ function Jobs() {
     <div className={style.profile}>
       {!isEditing && <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"button"} />}
 
-      {user?.jobs_history ?
+      {user?.JobsHistories ?
         isEditing ?
           <form onSubmit={handleSave} className={style.edit_details}>
             <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
             <div className={style.jobs}>
               {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
-                <h4>{job.company_id}</h4>
-                <h5>{job.job_title}</h5>
-                <UserInfoField title={"from"} data={job.start_date} isEditing={isEditing} name={`JobsHistories[${i}].start_date`} handleChange={handleChange} type={"date"} />
-                <UserInfoField title={"to"} data={job.end_date} isEditing={isEditing} name={`JobsHistories[${i}].end_date`} handleChange={handleChange} type={"date"} />
-              </div>)}
+                <JobComp job={job} form={true} handleChange={handleChange}/></div>)}
             </div>
           </form>
           :
           <div className={style.jobs}>
             {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
-              <h4>{job.company_id}</h4>
-              <h5>{job.job_title}</h5>
-              <UserInfoField title={"from"} data={job.start_date} icon={<CiCalendarDate />} />
-              <UserInfoField title={"to"} data={job.end_date == null ? "today" : job.end_date} icon={<CiCalendarDate />} />
+              <JobComp job={job} form={false} />
             </div>)}
           </div>
         : "No jobs to display"}
@@ -76,3 +69,22 @@ function Jobs() {
 }
 
 export default Jobs
+
+function JobComp({ job, form, handleChange }) {
+
+  return <>
+    <h4><i><MdWorkOutline /></i>{job.company_id}</h4>
+    <h5>{job.job_title}</h5>
+    {form ?
+      <>
+        <UserInfoField title={"from"} data={job.start_date} isEditing={isEditing} name={`JobsHistories[${i}].start_date`} handleChange={handleChange} type={"date"} />
+        <UserInfoField title={"to"} data={job.end_date} isEditing={isEditing} name={`JobsHistories[${i}].end_date`} handleChange={handleChange} type={"date"} />
+      </>
+      :
+      <>
+        <UserInfoField title={"from"} data={job.start_date} icon={<CiCalendarDate />} />
+        <UserInfoField title={"to"} data={job.end_date == null ? "today" : job.end_date} icon={<CiCalendarDate />} />
+      </>
+    }
+  </>
+}
