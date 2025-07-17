@@ -9,7 +9,7 @@ function App() {
     <div style={{ textAlign: "center", marginTop: "50px" }}>
         {/*<Layout />*/}
         {/*<LinkedInPage />*/}
-       <h1>מערכת ניהול משתמשים</h1>
+       <h1>People Management System</h1>
         <AdminImportSection />
     </div>
   );
