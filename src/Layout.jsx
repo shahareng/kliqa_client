@@ -12,6 +12,8 @@ import Community from "./pages/Member/Community"
 import User from "./pages/Admin/User";
 import Events from "./pages/Admin/Events";
 import NewEvent from "./pages/Admin/NewEvent";
+import GPTAssistant from "./pages/Admin/gpt";
+
 
 function Layout() {
 
@@ -21,6 +23,7 @@ function Layout() {
 
             <Route path="/admin" element={<AdminDashboard />}>
                 <Route path="users" element={<UsersCards />} />
+                <Route path="/admin/gpt" element={<GPTAssistant />} />
                 <Route path="users/:id" element={<User />} />
                 <Route path="events" element={<Events />} />
                 <Route path="events/new" element={<NewEvent />} />
