@@ -34,7 +34,7 @@ function UploadCVButton({ onFileSelect }) {
   return (
     <div className={styles.uploadWrapper}>
       <label htmlFor="cv-upload" className={styles.uploadButton}>
-        Upload CV File
+        CV File
       </label>
       <input
         id="cv-upload"

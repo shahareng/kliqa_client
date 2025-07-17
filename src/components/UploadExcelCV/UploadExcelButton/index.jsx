@@ -4,7 +4,7 @@ import styles from './style.module.css';
 function UploadExcelButton({ onFileSelect }) {
   const [message, setMessage] = useState('');
   const [fileName, setFileName] = useState('');
-  const [errors, setErrors] = useState([]);   
+  const [errors, setErrors] = useState([]);
 
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
@@ -33,7 +33,7 @@ function UploadExcelButton({ onFileSelect }) {
     const formData = new FormData();
     formData.append('file', file);
 
-    
+
     try {
       const res = await fetch('http://localhost:2500/upload/excel', {
         method: 'POST',
@@ -46,26 +46,26 @@ function UploadExcelButton({ onFileSelect }) {
         // שגיאות ולידציה מהשרת
         if (data.errors) {
           setErrors(data.errors);
-          setMessage('היו שגיאות בקובץ.');
+          setMessage('Errors in the file.');
         } else {
-          setMessage('שגיאה בלתי צפויה.');
+          setMessage('Unexpected Error');
         }
       } else {
         setErrors([]);
-        setMessage('✅ קובץ הועלה בהצלחה!');
+        setMessage('✅ Upload Succes');
         console.log('Excel Data:', data.data); // נתונים מהשרת
       }
     } catch (error) {
-      setMessage('שגיאה בשליחה לשרת');
+      setMessage('Error sending to server');
     }
 
   };
-    
+
 
   return (
     <div className={styles.uploadWrapper}>
-       <label htmlFor="excel-upload" className={styles.uploadButton}>
-        העלאת קובץ Excel
+      <label htmlFor="excel-upload" className={styles.uploadButton}>
+        Excel File
       </label>
       <input
         id="excel-upload"
@@ -74,13 +74,16 @@ function UploadExcelButton({ onFileSelect }) {
         onChange={handleFileChange}
         className={styles.hiddenInput}
       />
-      {message && <p className={styles.uploadMessage}>{message}</p>}
       {fileName && <p className={styles.fileName}>📄 {fileName}</p>}
-      {errors.length > 0 && (
-        <ul className={styles.errorList}>
-          {errors.map((err, i) => <li key={i} style={{ color: 'red' }}>{err}</li>)}
-        </ul>
-      )}
+      {errors.length > 0 ?
+        (
+          <ul className={styles.errorList}>
+            {errors.map((err, i) => <li key={i} style={{ color: 'red' }}>{err}</li>)}
+          </ul>
+        )
+        :
+        (message && <p className={styles.uploadMessage}>{message}</p>)
+      }
     </div>
   );
 }

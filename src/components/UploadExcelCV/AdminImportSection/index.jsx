@@ -35,13 +35,13 @@ function AdminImportSection() {
 
   return (
     <div>
-     <h2>Admin Import Section</h2>
+     <h4>Upload Members</h4>
 
       {/* הכפתור מקבל את הפונקציה ששולחת לשרת */}
       <UploadExcelButton onFileSelect={handleExcelUpload} />
 
       {/* תצוגת הודעה */}
-      {uploadStatus && <p>{uploadStatus}</p>}
+      {/* {uploadStatus && <p>{uploadStatus}</p>} */}
 
       {/* נשאיר את CV לשלב הבא */}
       <UploadCVButton onFileSelect={setCVFile} />
