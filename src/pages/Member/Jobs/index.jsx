@@ -54,14 +54,17 @@ function Jobs() {
             <EditBtn isEditing={isEditing} setIsEditing={setIsEditing} type={"submit"} />
             <div className={style.jobs}>
               {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
-                <JobComp job={job} form={true} handleChange={handleChange}/></div>)}
+                <JobComp job={job} form={true} handleChange={handleChange} isEditing={isEditing} i={i} /></div>)}
             </div>
           </form>
           :
           <div className={style.jobs}>
-            {user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
-              <JobComp job={job} form={false} />
-            </div>)}
+            {user.JobsHistories.length ?
+              user.JobsHistories.map((job, i) => <div className={style.job} key={i}>
+                <JobComp job={job} form={false} />
+              </div>)
+              : "No jobs to display"
+            }
           </div>
         : "No jobs to display"}
     </div>
@@ -70,7 +73,7 @@ function Jobs() {
 
 export default Jobs
 
-function JobComp({ job, form, handleChange }) {
+function JobComp({ job, form, handleChange, isEditing, i }) {
 
   return <>
     <h4><i><MdWorkOutline /></i>{job.company_id}</h4>
