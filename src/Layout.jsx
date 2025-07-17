@@ -15,6 +15,8 @@ import Event from "./pages/Admin/Event";
 import RegisterEvent from "./pages/RegisterEvent";
 import ArrivedToEvent from "./pages/ArrivedToEvent";
 import NewEvent from "./pages/Admin/NewEvent";
+import GPTAssistant from "./pages/Admin/gpt";
+
 
 function Layout() {
 
@@ -24,6 +26,7 @@ function Layout() {
 
             <Route path="/admin" element={<AdminDashboard />}>
                 <Route path="users" element={<UsersCards />} />
+                <Route path="/admin/gpt" element={<GPTAssistant />} />
                 <Route path="users/:id" element={<User />} />
                 <Route path="events" element={<Events />} />
                 <Route path="events/new" element={<NewEvent />} />
