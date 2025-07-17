@@ -55,7 +55,7 @@ function ArrivedToEvent() {
         <form onSubmit={() => alert("Thanks!")} className={style.form_register}>
             <div className={style.fileds}>
                 {formLabels.map((label, i) => <UserInfoField
-                    title={label.title} data={label.name} icon={label.icon} isEditing={isEditing} name={label.name} type={label.type} />)}
+                    title={label.title} data={""} icon={label.icon} isEditing={isEditing} name={label.name} type={label.type} />)}
             </div>
             <button type="submit" className={style.here}>I Am Here <i><FiSmile /></i></button>
         </form>

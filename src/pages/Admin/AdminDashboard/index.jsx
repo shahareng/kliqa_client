@@ -1,6 +1,7 @@
 import { FiCalendar, FiLink, FiLogOut, FiUser } from "react-icons/fi";
 import style from "./style.module.css"
 import { Outlet, NavLink } from 'react-router-dom';
+import AdminImportSection from "../../../components/UploadExcelCV/AdminImportSection";
 
 const navs = [
   {
@@ -40,6 +41,9 @@ function AdminDashboard() {
             {nav.title}
             <i>{nav.icon}</i>
           </NavLink>)}
+          <div className={style.upload}>
+            <AdminImportSection />
+          </div>
         </nav>
       </div>
       <Outlet />
