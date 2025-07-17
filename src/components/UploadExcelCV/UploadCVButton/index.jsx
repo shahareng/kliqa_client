@@ -21,12 +21,12 @@ function UploadCVButton({ onFileSelect }) {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-      setMessage('Only PDF or Word files are allowed.');
+      setMessage('Only PDF, DOC, or DOCX files are allowed.');
       setFileName('');
       return;
     }
 
-    setMessage('File uploaded successfully.');
+    setMessage('CV file uploaded successfully.');
     setFileName(file.name);
     onFileSelect(file);
   };

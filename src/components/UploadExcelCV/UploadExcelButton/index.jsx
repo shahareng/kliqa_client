@@ -25,7 +25,7 @@ function UploadExcelButton({ onFileSelect }) {
       return;
     }
 
-    setMessage('File uploaded successfully.');
+    setMessage('Excel file uploaded successfully.');
     setFileName(file.name);
     onFileSelect(file);
   };
