@@ -36,6 +36,21 @@ const userA = {
   "admin_notes": "Interested in education-related projects. Consider for leadership roles."
 }
 
+const links = [
+  {
+    to: "general",
+    data: "General"
+  },
+  {
+    to: "jobs",
+    data: "Jobs"
+  },
+  {
+    to: "community",
+    data: "Community"
+  }
+]
+
 function MemberDashboard() {
 
   const [user, setUser] = useState(null);
@@ -58,9 +73,12 @@ function MemberDashboard() {
         <nav className={style.member_nav}>
           {/* <NavLink to="profile">My Profile</NavLink>
       <NavLink to="myConnections">My Connections</NavLink> */}
-          <NavLink to="general" className={({ isActive }) => (isActive ? style.active : '')}>General</NavLink>
-          <NavLink to="jobs" className={({ isActive }) => (isActive ? style.active : '')}>Jobs</NavLink>
-          <NavLink to="community" className={({ isActive }) => (isActive ? style.active : '')}>Community</NavLink>
+          {links.map((link, i) => <NavLink
+            key={i}
+            to={link.to}
+            className={({ isActive }) => (isActive ? style.active : '')}>
+            {link.data}
+          </NavLink>)}
         </nav>
         <Outlet />
       </div>
